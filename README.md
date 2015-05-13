@@ -5,6 +5,8 @@ Middleware router that validates request against swagger doc specifications.
 Quick reference:
 - A request may pass erroneously pass validation if the route is not recognized or the configuration is not correct. if no validation is run `this.validated` will be `false`
 
+# NOTHING BELOW THIS LINE IS ACCURATE
+
 ## Key
 
 - [Usage](#usage)
