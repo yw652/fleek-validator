@@ -1,0 +1,102 @@
+{
+  "REQUIRED" : {
+    "mesage" : "Required value",
+    "code" : "0"
+  },
+  "TYPE" : {
+    "STRING" : {
+      "message" : "String expected",
+      "code"    : 100
+    } ,
+    "BOOLEAN" : {
+      "message" : "Boolean expected",
+      "code"    : 101
+    } ,
+    "LONG" : {
+      "message" : "Long expected",
+      "code"    : 102
+    } ,
+    "FLOAT" : {
+      "message" : "Float expected",
+      "code"    : 103
+    } ,
+    "DOUBLE" : {
+      "message" : "Double expected",
+      "code"    : 104
+    } ,
+    "BYTE" : {
+      "message" : "Byte expected",
+      "code"    : 105
+    } ,
+    "DATE" : {
+      "message" : "Date expected",
+      "code"    : 106
+    } ,
+    "DATETIME" : {
+      "message" : "DateTime expected",
+      "code"    : 107
+    }
+  },
+  "VALUE" : {
+    "MULTIPLE_OF": {
+      "message" : "Must be a multiple of ${expected}",
+      "code"    : 200
+    },
+    "MAX": {
+      "mesage" : "Must be less than or equal to ${expected}",
+      "code"   : 201
+    },
+    "EXCLUSIVE_MAX": {
+      "mesage" : "Must be less than ${expected}",
+      "code"   : 202
+    },
+    "MIN": {
+      "mesage" : "Must be greater than or equal to ${expected}",
+      "code"   : 203
+    },
+    "EXCLUSIVE_MIN": {
+      "mesage" : "Must be greater then ${expected}",
+      "code"   : 204
+    },
+    "MAX_LENGTH": {
+      "mesage" : "Must be no longer than ${expected}",
+      "code"   : 205
+    },
+    "MAX_ITEMS": {
+      "mesage" : "Must be no longer than ${expected}",
+      "code"   : 206
+    },
+    "MIN_LENGTH": {
+      "mesage" : "Must be no shorter than ${expected}",
+      "code"   : 207
+    },
+    "MIN_ITEMS": {
+      "mesage" : "Must be no shorter than ${expected}",
+      "code"   : 208
+    },
+    "PATTERN": {
+      "mesage" : "Must match the pattern ${expected}",
+      "code"   : 209
+    },
+    "UNIQUE_ITEMS": {
+      "mesage" : "Items must be unique",
+      "code"   : 210
+    },
+    "MAX_PROPERTIES": {
+      "mesage" : "Must have no more than ${expected} properties",
+      "code"   : 211
+    },
+    "MIN_PROPERTIES": {
+      "mesage" : "Must have no less than ${expected} properties",
+      "code"   : 212
+    },
+    "ENUM": {
+      "mesage" : "Only the Following values are allowed: ${expected}",
+      "code"   : 203
+    },
+    "": {
+      "mesage" : "",
+      "code"   : 20
+    }
+  }
+}
