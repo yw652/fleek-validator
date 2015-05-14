@@ -16,29 +16,33 @@
       "message" : "Boolean expected",
       "code"    : 101
     },
+    "INTEGER" : {
+      "message" : "Integer expected",
+      "code"    : 102
+    },
     "LONG" : {
       "message" : "Long expected",
-      "code"    : 102
+      "code"    : 103
     },
     "FLOAT" : {
       "message" : "Float expected",
-      "code"    : 103
+      "code"    : 104
     },
     "DOUBLE" : {
       "message" : "Double expected",
-      "code"    : 104
+      "code"    : 105
     },
     "BYTE" : {
       "message" : "Byte expected",
-      "code"    : 105
+      "code"    : 106
     },
     "DATE" : {
       "message" : "Date expected",
-      "code"    : 106
+      "code"    : 107
     },
     "DATETIME" : {
       "message" : "DateTime expected",
-      "code"    : 107
+      "code"    : 108
     }
   },
   "VALUE" : {
@@ -103,7 +107,7 @@
       "code"   : 204
     },
     "ALPHANUMERIC": {
-      "message" : "",
+      "message" : "Must be alphanumberic",
       "code"   : 20
     },
     "LOWERCASE": {
