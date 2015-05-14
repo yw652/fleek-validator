@@ -8,7 +8,7 @@ Quick reference:
 - A request may pass erroneously pass validation if the route is not recognized or the configuration is not correct. if no validation is run `this.validated` will be `false`
 - The `validate` object/helper will be added to the request context and can be accessed during request handling. eg: `this.validate.one(foo, {/* parameter decription*/})`
 - if koa-router is not used, paths will be mapped to swager docs using the [koa-router](https://github.com/koajs/route) module. If another routing module is used in the stack, unexpected results may appear (you have been warned!)
--A full list of errors an codes can be found in [error.json](https://github.com/gohart/fleek-validator/blob/master/errors.json)
+- A full list of errors an codes can be found in [error.json](https://github.com/gohart/fleek-validator/blob/master/errors.json)
 
 ## Key
 
@@ -28,7 +28,7 @@ Quick reference:
   - [`config.swagger`](#configswagger)
   - [`config.success`](#configsuccess)
   - [`config.error`](#configerror)
-  - [`config.strict`](#configstrict) fail routes not in swagger docs
+  - [`config.strict`](#configstrict)
 - [Authors](#authors)
 
 ## Usage
