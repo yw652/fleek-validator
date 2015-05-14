@@ -196,15 +196,39 @@ var error = validator.validate.one(fooEmail, {
 
 ### validate.object
 
-#### TODO
-
-- validate an object of values against an array of swagger parameter object
+- validate an object of values against an array of swagger parameter objects
+- also accepts accepts definition property objects
+   - eg:
 
 ```javascript
-var errors = validator.validate.object({
-  user_email    : fooEmail,
-  user_password : foopwd
-}, [
+      definitions : {
+        UserModel : {
+          parameters : {
+            name : {
+              type    : "string",
+              required: true
+            }
+          }
+        }
+      }
+```
+
+#### parameters
+
+- subject [String] - `.` delimited error property chain to identify which [error.json](https://github.com/gohart/fleek-validator/blob/master/errors.json) error to generate
+- parameters [Object] - swagger parameter description which failed
+- options [object] (optional)
+  - trim [Boolean] - if true, trim properties from the result that aren't in the the parameters array
+  - defaults [Boolean] - if true, apply any `defaultValue`'s from the parameters array
+  - partial [Boolean] - if true, allow `required` parameters to pass through undefined (useful for partial updates)
+
+#### returns
+
+- [Array] - array of validation errors
+- [Object] - the object which passed validation, after options are applied
+
+```javascript
+var parameters = [
   {
     name  : 'user_email',
     type  : 'string',
@@ -213,8 +237,27 @@ var errors = validator.validate.object({
     name    : 'user_password',
     type    : 'string',
     pattern : passwordRegexp
+  }, {
+    name         : 'confirmed',
+    defaultValue : false
   }
-])
+];
+
+var subject = {
+  user_email    : fooEmail,
+  user_password : fooPwd,
+  injection     : someMaliciousInjection
+};
+
+var result = validator.validate.object(subject, parameters, {
+  trim     : true,
+  defaults : true,
+});
+// result -> {
+//   user_email    : fooEmail,
+//   user_password : fooPwd,
+//   confirmed     : false
+// }
 ```
 
 ### validate.ctx
@@ -240,6 +283,7 @@ var errors = validator.validate.ctx(ctx, [
 - An error class for validation errors `[ValidationError]`
 
 #### parameters
+
 - errorName [String] - `.` delimited error property chain to identify which [error.json](https://github.com/gohart/fleek-validator/blob/master/errors.json) error to generate
 - parameter [Object] - swagger parameter description which failed
 - expected [String] (optional) - expected value for the parameter (replaces instances of `${expected}` in the message)
