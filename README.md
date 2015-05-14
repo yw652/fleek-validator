@@ -5,6 +5,8 @@ Middleware router that validates request against swagger doc specifications.
 Quick reference:
 - A request may pass erroneously pass validation if the route is not recognized or the configuration is not correct. if no validation is run `this.validated` will be `false`
 
+anything not using fleek-validator must use koa router! (or a router with identical templating)
+
 # NOTHING BELOW THIS LINE IS ACCURATE
 
 ## Key
@@ -18,6 +20,7 @@ Quick reference:
   - [`config.swagger`](#configswagger)
   - [`config.success`](#configsuccess)
   - [`config.error`](#configerror)
+  - [`config.strict`](#configstrict) fail routes not in swagger docs
 - [Authors](#authors)
 
 ## Usage
