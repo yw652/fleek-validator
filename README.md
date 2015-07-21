@@ -21,13 +21,14 @@ Quick reference:
 - [Static Utilities](#static-utilities)
   - [validator.validate](#validatorvalidate)
     - [`validate.one`](#validateone)
-    - [`validate.object`](validateobject)
-    - [`validate.ctx`](validatectx)
-    - [`validate.error`](validateerror)
+    - [`validate.object`](#validateobject)
+    - [`validate.ctx`](#validatectx)
+    - [`validate.error`](#validateerror)
+    - [`validate.isError`](#iserror)
 - [Configuration](#configuration)
   - [`config.swagger`](#configswagger)
   - [`config.success`](#configsuccess)
-  - [`config.error`](#configerror)
+  - [`config.catch`](#configcatch)
   - [`config.strict`](#configstrict)
 - [Authors](#authors)
 
@@ -145,7 +146,7 @@ app.listen(3000);
 
 - The following structure will be followed in errors passed to the error handler specified
 - If no error handler is specified, the error will be sent to the client with the status `400`
--A full list of errors an codes can be found in [error.json](https://github.com/gohart/fleek-validator/blob/master/errors.json)
+- A full list of errors an codes can be found in [error.json](https://github.com/gohart/fleek-validator/blob/master/errors.json)
 
 ```javscript
 {
@@ -292,6 +293,26 @@ var errors = validator.validate.ctx(ctx, [
 var someError = new validator.validate.error('TYPE.STRING', someParameter, 'alphanumeric');
 ```
 
+## validate.isError
+
+- detects whether or not the object is a validation error
+
+#### parameters
+
+- result [Mixed] - result object to test for validation failure
+
+#### alias
+
+- isErr
+- isValidationError
+- isValidationErr
+- isValError
+- isValErr
+
+```javascript
+var failedValidationResult = validator.validate.isError(resultOfValidation);
+```
+
 ## Configuration
 
 
@@ -339,7 +360,7 @@ config.succcess = function *(next) {
 }
 ```
 
-### config.error
+### config.catch
 
 #### [optional]
 
@@ -354,7 +375,7 @@ config.succcess = function *(next) {
 - `Function` - executed on validation failure
 
 ```javascript
-config.error = function *(err, next) {
+config.catch = function *(err, next) {
   console.log('oh no! Returning default errors');
 }
 ```
