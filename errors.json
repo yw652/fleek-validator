@@ -37,12 +37,20 @@
       "code"    : 106
     },
     "DATE" : {
-      "message" : "Date expected",
+      "message" : "Date expected with the format ${expected}",
       "code"    : 107
     },
     "DATETIME" : {
       "message" : "DateTime expected",
       "code"    : 108
+    },
+    "ARRAY" : {
+      "message" : "Array expected",
+      "code"    : 109
+    },
+    "OBJECT" : {
+      "message" : "Object expected",
+      "code"    : 110
     }
   },
   "VALUE" : {
@@ -108,15 +116,19 @@
     },
     "ALPHANUMERIC": {
       "message" : "Must be alphanumberic",
-      "code"   : 20
+      "code"   : 205
     },
     "LOWERCASE": {
       "message" : "Must be lowercase",
-      "code"   : 20
+      "code"   : 206
     },
     "UPPERCASE": {
       "message" : "Must be uppercase",
-      "code"   : 20
+      "code"   : 207
+    },
+    "DATE": {
+      "message" : "Must be a date",
+      "code"    : 208
     }
   }
 }
