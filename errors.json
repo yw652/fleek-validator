@@ -5,7 +5,7 @@
   },
   "GENERIC" : {
     "message" : "Validation failed",
-    "code"    : 1
+    "code"    : 2
   },
   "TYPE" : {
     "STRING" : {
@@ -126,9 +126,13 @@
       "message" : "Must be uppercase",
       "code"   : 207
     },
-    "DATE": {
-      "message" : "Must be a date",
+    "PAST": {
+      "message" : "Must be a past date",
       "code"    : 208
+    },
+    "FUTURE": {
+      "message" : "Must be a future date",
+      "code"    : 209
     }
   }
 }

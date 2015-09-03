@@ -60,6 +60,8 @@ Quick reference:
     - [`lowercase`](#lowercase)
     - [`uppercase`](#uppercase)
     - [`format`](#format)
+    - [`past`](#past)
+    - [`future`](#future)
   - [Hygiene](#hygiene)
     - [`trim`](#trim)
     - [`toUpperCase`](#touppercase)
@@ -850,6 +852,36 @@ Accept any boolean value
   "type"   : "date",
   "in"     : "body",
   "format" : "MM-DD-YYYY"
+}]
+```
+
+#### `past`
+
+- _Required Type_: Date
+- _Description_: Reject any date that is not in the past
+- _Expects_: Boolean
+
+```JSON
+"parameters": [{
+  "name" : "foo",
+  "type" : "date",
+  "in"   : "body",
+  "past" : true
+}]
+```
+
+#### `future`
+
+- _Required Type_: Date
+- _Description_: Reject any date not in the future
+- _Expects_: boolean
+
+```JSON
+"parameters": [{
+  "name"   : "foo",
+  "type"   : "date",
+  "in"     : "body",
+  "future" : true
 }]
 ```
 
