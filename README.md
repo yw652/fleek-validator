@@ -529,7 +529,7 @@ Accept any long value
 "parameters": [{
   "name" : "foo",
   "type" : "long",
-  "in"   : body""
+  "in"   : "body"
 }]
 ```
 
@@ -634,7 +634,7 @@ Accept any boolean value
 "parameters": [{
   "name"    : "foo",
   "type"    : "integer",
-  "in"      : "body"
+  "in"      : "body",
   "maximum" : 10
 }]
 ```
@@ -649,7 +649,7 @@ Accept any boolean value
 "parameters": [{
   "name"             : "foo",
   "type"             : "integer",
-  "in"               : "body"
+  "in"               : "body",
   "exclusiveMaximum" : 10
 }]
 ```
@@ -664,7 +664,7 @@ Accept any boolean value
 "parameters": [{
   "name"    : "foo",
   "type"    : "integer",
-  "in"      : "body"
+  "in"      : "body",
   "minimum" : 10
 }]
 ```
@@ -679,7 +679,7 @@ Accept any boolean value
 "parameters": [{
   "name"             : "foo",
   "type"             : "integer",
-  "in"               : "body"
+  "in"               : "body",
   "exclusiveMinimum" : 10
 }]
 ```
@@ -695,10 +695,9 @@ Accept any boolean value
 "parameters": [{
   "name"      : "foo",
   "type"      : "array",
-  "in"        : "body"
+  "in"        : "body",
   "maxLength" : 10,
-  // or
-  "maxItems" : 10
+  "maxItems"  : 10
 }]
 ```
 
@@ -713,10 +712,9 @@ Accept any boolean value
 "parameters": [{
   "name"      : "foo",
   "type"      : "array",
-  "in"        : "body"
+  "in"        : "body",
   "minLength" : 10,
-  // or
-  "minItems" : 10
+  "minItems"  : 10
 }]
 ```
 
@@ -731,7 +729,7 @@ Accept any boolean value
   "name"    : "foo",
   "type"    : "string",
   "in"      : "body",
-  "pattern" : '\s*foo\s*'
+  "pattern" : "\\s*foo\\s*"
 }]
 ```
 
