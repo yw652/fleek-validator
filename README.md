@@ -30,6 +30,43 @@ Quick reference:
   - [`config.success`](#configsuccess)
   - [`config.catch`](#configcatch)
   - [`config.strict`](#configstrict)
+- [Validations](#validation)
+  - [Types](#types)
+    - [`string`](#string)
+    - [`integer`](#integer)
+    - [`long`](#long)
+    - [`float`](#float)
+    - [`double`](#double)
+    - [`byte`](#byte)
+    - [`dateTime`](#dateTime)
+    - [`date`](#date)
+    - [`boolean`](#boolean)
+  - [Restrictions](#restrictions)
+    - [`multipleOf`](#multipleof)
+    - [`maximum`](#maximum)
+    - [`exclusiveMaximum`](#exclusiveMaximum)
+    - [`minimum`](#minimum)
+    - [`exclusiveMinimum`](#exclusiveMinimum)
+    - [`maxlength`](#maxlength)
+    - [`maxItems`](#maxItems)
+    - [`minLength`](#minLength)
+    - [`minItems`](#minItems)
+    - [`pattern`](#pattern)
+    - [`maxProperties`](#maxproperties)
+    - [`minProperties`](#minproperties)
+    - [`enum`](#enum)
+    - [`email`](#email)
+    - [`alphaNumeric`](#alphanumeric)
+    - [`lowercase`](#lowercase)
+    - [`uppercase`](#uppercase)
+    - [`format`](#format)
+  - [Hygiene](#hygiene)
+    - [`trim`](#trim)
+    - [`toUpperCase`](#touppercase)
+    - [`toLowerCase`](#tolowercase)
+  - [Miscellaneous](#miscellaneous)
+    - [`defaltsValue`](#defaultvalue)
+    - [`required`](#required)
 - [Authors](#authors)
 
 ## Usage
@@ -150,7 +187,7 @@ app.listen(3000);
 
 ```javscript
 {
-  "error": "Validaiton Failed",
+  "error": "Validation Failed",
   "error_name": "VALIDATION_FAILED",
   "details": [{
     "name": "VALUE.FOO",
@@ -397,7 +434,505 @@ config.catch = function *(err, next) {
 config.strict = true;
 ```
 
+## Validation
 
+Validates params based on configuration. Can be used in either the `parameters` structure in a path or the `properties` structure of a definition
+
+#### Path Parameters
+
+_Paramer validation will occur during middleware execution_
+
+```JSON
+{
+  "paths" : {
+    "/foo" : {
+      "post" : {
+        "parameters" : [{
+          "name"         : "someFormParam",
+          "in"           : "body",
+          "description"  : "An arbitrary date",
+          "type"         : "date",
+          "defaultValue" : "01/01/1990"
+        }, {
+          "name"         : "someQueryParam",
+          "in"           : "query",
+          "description"  : "An arbitrary required string",
+          "required"     : true,
+          "type"         : "string",
+          "alphaNumeric" : true
+        }]
+      }
+    }
+  }
+}
+```
+
+#### Definition Parameters
+
+_Definition validation must be called explicitly with a static function_
+
+```JSON
+{
+  "definitions" : {
+    "someDefinition" : {
+      "properties": {
+        "someFormParam" : {
+          "description"  : "An arbitrary date",
+          "type"         : "date",
+          "defaultValue" : "01/01/1990"
+        },
+        "someQueryParam" : {
+          "description"  : "An arbitrary required string",
+          "type"         : "string",
+          "required"     : true,
+          "alphaNumeric" : true
+        }
+      }
+    }
+  }
+}
+```
+
+### Types
+
+#### `string`
+
+Accept any String value
+
+```JSON
+"parameters": [{
+  "name" : "foo",
+  "type" : "string",
+  "in"   : "body"
+}]
+```
+
+#### `integer`
+
+Accept any integer value
+
+```JSON
+"parameters": [{
+  "name" : "foo",
+  "type" : "integer",
+  "in"   : "body"
+}]
+```
+
+#### `long`
+
+Accept any long value
+
+```JSON
+"parameters": [{
+  "name" : "foo",
+  "type" : "long",
+  "in"   : body""
+}]
+```
+
+#### `float`
+
+Accept any float value
+
+```JSON
+"parameters": [{
+  "name" : "foo",
+  "type" : "float",
+  "in"   : "body"
+}]
+```
+
+#### `double`
+
+Accept any double value
+
+```JSON
+"parameters": [{
+  "name" : "foo",
+  "type" : "double",
+  "in"   : "body"
+}]
+```
+
+#### `byte`
+
+Accept any byte value
+
+```JSON
+"parameters": [{
+  "name" : "foo",
+  "type" : "byte",
+  "in"   : "body"
+}]
+```
+
+#### `dateTime`
+
+Accept any dateTime value
+
+```JSON
+"parameters": [{
+  "name" : "foo",
+  "type" : "dateTime",
+  "in"   : "body"
+}]
+```
+
+#### `date`
+
+Accept any date value of form `MM/DD/YY`. see [format](#format) for custom format. using `"strict": true`
+
+```JSON
+"parameters": [{
+  "name" : "foo",
+  "type" : "date",
+  "in"   : "body"
+}]
+```
+
+
+#### `boolean`
+
+Accept any boolean value
+
+```JSON
+"parameters": [{
+  "name" : "foo",
+  "type" : "boolean",
+  "in"   : "body"
+}]
+```
+
+
+### Restrictions
+
+#### `multipleOf`
+
+- _Required Type_: Number
+- _Description_: Reject any number not a multiple of the config value
+- _Expects_: Number to compare
+
+```JSON
+"parameters": [{
+  "name"       : "foo",
+  "in"         : "body",
+  "type"       : "integer",
+  "multipleOf" : 10
+}]
+```
+
+#### `maximum`
+
+- _Required Type_: Number
+- _Description_: Reject any number greater than the config value
+- _Expects_: Number maximum
+
+```JSON
+"parameters": [{
+  "name"    : "foo",
+  "type"    : "integer",
+  "in"      : "body"
+  "maximum" : 10
+}]
+```
+
+#### `exclusiveMaximum`
+
+- _Required Type_: Number
+- _Description_: Reject any number greater than or equal to the config value
+- _Expects_: Number maximum
+
+```JSON
+"parameters": [{
+  "name"             : "foo",
+  "type"             : "integer",
+  "in"               : "body"
+  "exclusiveMaximum" : 10
+}]
+```
+
+#### `minimum`
+
+- _Required Type_: Number
+- _Description_: Reject any number less than the config value
+- _Expects_: Number minimum
+
+```JSON
+"parameters": [{
+  "name"    : "foo",
+  "type"    : "integer",
+  "in"      : "body"
+  "minimum" : 10
+}]
+```
+
+#### `exclusiveMinimum`
+
+- _Required Type_: Number
+- _Description_: Reject any number less than or equal to the config value
+- _Expects_: Number maximum
+
+```JSON
+"parameters": [{
+  "name"             : "foo",
+  "type"             : "integer",
+  "in"               : "body"
+  "exclusiveMinimum" : 10
+}]
+```
+
+#### `maxLength`
+#### `maxItems`
+
+- _Required Type_: Array
+- _Description_: Reject any array containing more than the number the config value
+- _Expects_:  Maximum number of properties allowed
+
+```JSON
+"parameters": [{
+  "name"      : "foo",
+  "type"      : "array",
+  "in"        : "body"
+  "maxLength" : 10,
+  // or
+  "maxItems" : 10
+}]
+```
+
+#### `minLength`
+#### `minItems`
+
+- _Required Type_: Array
+- _Description_: Reject any array containing fewer than the number the config value
+- _Expects_:  Minimum number of properties allowed
+
+```JSON
+"parameters": [{
+  "name"      : "foo",
+  "type"      : "array",
+  "in"        : "body"
+  "minLength" : 10,
+  // or
+  "minItems" : 10
+}]
+```
+
+#### `pattern`
+
+- _Required Type_: String
+- _Description_: Reject any pattern not matching the config value
+- _Expects_: RegExp string
+
+```JSON
+"parameters": [{
+  "name"    : "foo",
+  "type"    : "string",
+  "in"      : "body",
+  "pattern" : '\s*foo\s*'
+}]
+```
+
+#### `maxProperties`
+
+- _Required Type_: Object
+- _Description_: Reject any object with fewer than number specified
+- _Expects_: Number maximum
+
+```JSON
+"parameters": [{
+  "name"          : "foo",
+  "type"          : "object",
+  "in"            : "body",
+  "maxProperties" : 10
+}]
+```
+
+#### `minProperties`
+
+- _Required Type_: Object
+- _Description_: Reject any object with greater than number specified
+- _Expects_: Number minimum
+
+```JSON
+"parameters": [{
+  "name"          : "foo",
+  "type"          : "object",
+  "in"            : "body",
+  "minProperties" : 10
+}]
+```
+
+#### `enum`
+
+- _Required Type_: Mixed
+- _Description_: Reject any value not in the config array
+- _Expects_: array
+
+```JSON
+"parameters": [{
+  "name" : "foo",
+  "type" : "string",
+  "in"   : "body",
+  "enum" : ["accepted", "values"]
+}]
+```
+
+#### `email`
+
+- _Required Type_: String
+- _Description_: Reject any invalid email address
+- _Expects_: Boolean
+
+```JSON
+"parameters": [{
+  "name"  : "foo",
+  "type"  : "string",
+  "in"    : "body",
+  "email" : true
+}]
+```
+
+#### `alphaNumeric`
+
+- _Required Type_: String
+- _Description_: Reject any non alpha-numeric value
+- _Expects_: Boolean
+
+```JSON
+"parameters": [{
+  "name"         : "foo",
+  "type"         : "string",
+  "in"           : "body",
+  "alphaNumeric" : true
+}]
+```
+
+#### `lowercase`
+
+- _Required Type_: String
+- _Description_: Reject any value with uppercase values
+- _Expects_: Boolean
+
+```JSON
+"parameters": [{
+  "name"      : "foo",
+  "type"      : "string",
+  "in"        : "body",
+  "lowercase" : true
+}]
+```
+
+#### `uppercase`
+
+- _Required Type_: String
+- _Description_: Reject any value with lowercase values
+- _Expects_: Boolean
+
+```JSON
+"parameters": [{
+  "name"      : "foo",
+  "type"      : "string",
+  "in"        : "body",
+  "uppercase" : true
+}]
+```
+
+#### `format`
+
+- _Required Type_: Date
+- _Description_: Reject any string not fitting the date format
+- _Expects_: String following [Moment](http://momentjs.com) formatting
+
+```JSON
+"parameters": [{
+  "name"   : "foo",
+  "type"   : "date",
+  "in"     : "body",
+  "format" : "MM-DD-YYYY"
+}]
+```
+
+
+### Hygiene
+
+#### `trim`
+
+- _Required Type_: String
+- _Description_: Trims leading and trailing whitespace
+- _Expects_: Boolean
+
+```JSON
+"parameters": [{
+  "name" : "foo",
+  "type" : "date",
+  "in"   : "body",
+  "trim" : true
+}]
+```
+
+#### `toUpperCase`
+
+- _Required Type_: String
+- _Description_: perform a `toUpperCase` operation on the parameter
+- _Expects_: Boolean
+
+```JSON
+"parameters": [{
+  "name"        : "foo",
+  "type"        : "date",
+  "in"          : "body",
+  "toUpperCase" : true
+}]
+```
+
+#### `toLowerCase`
+
+- _Required Type_: String
+- _Description_: perform a `toLowerCase` operation on the parameter
+- _Expects_: Boolean
+
+```JSON
+"parameters": [{
+  "name"        : "foo",
+  "type"        : "date",
+  "in"          : "body",
+  "toLowerCase" : true
+}]
+```
+
+### Miscellaneous
+
+#### defaultValue
+
+- _Required Type_: Mixed
+- _Description_: Sets the parameter if none is provided
+- _Expects_: Mixed
+
+```JSON
+"parameters": [{
+  "name"         : "foo",
+  "type"         : "date",
+  "in"           : "body",
+  "defaultValue" : "Hello World."
+}]
+```
+
+
+#### required
+
+- _Required Type_: Mixed
+- _Description_: Rejects any request not containing a value for the parameter. Performed before validation, but after defaults
+- _Expects_: boolean
+
+```JSON
+"parameters": [{
+  "name"     : "foo",
+  "type"     : "date",
+  "in"       : "body",
+  "required" : true
+}]
+```
 
 ## Authors
 
