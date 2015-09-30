@@ -21,6 +21,7 @@
     "is_js": "^0.7.3",
     "koa-router": "^4.3.2",
     "lodash": "^3.8.0",
-    "moment": "^2.10.6"
+    "moment": "^2.10.6",
+    "fleek-parser": "git+ssh://git@github.com:fleekjs/fleek-parser.git#v0.0.2"
   }
 }
