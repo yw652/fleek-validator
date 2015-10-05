@@ -1,6 +1,5 @@
 # Fleek Validator
 
-
 [![Build Status](https://travis-ci.org/fleekjs/fleek-validator.svg)](https://travis-ci.org/fleekjs/fleek-validator) [![npm](https://img.shields.io/npm/l/express.svg)](https://github.com/fleekjs/fleek-validator/blob/master/LICENSE)  [![Dependencies](https://img.shields.io/david/fleekjs/fleek-validator.svg)](https://david-dm.org/fleekjs/fleek-validator) [![Join the chat at https://gitter.im/fleekjs/fleek-validator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/fleekjs/fleek-validator?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
@@ -75,6 +74,7 @@ Quick reference:
   - [Miscellaneous](#miscellaneous)
     - [`defaltsValue`](#defaultvalue)
     - [`required`](#required)
+- [Reference Material](#reference-material)
 - [Authors](#authors)
 
 ## Usage
@@ -970,6 +970,20 @@ Accept any boolean value
   "required" : true
 }]
 ```
+
+
+## Reference Material
+
+#### Swagger
+
+- [Home](http://swagger.io/)
+- [Editor Demo](http://editor.swagger.io/)
+- [Documentation](https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md)
+
+#### By the authors
+
+- [Hart Engineering](http://engineering.hart.com/)
+
 
 ## Authors
 
