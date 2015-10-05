@@ -5,7 +5,7 @@
   "repository": "https://github.com/fleekjs/fleek-validator",
   "main": "lib/validator.js",
   "scripts": {
-    "test": "mocha --harmony test"
+    "test": "mocha --harmony tests"
   },
   "keywords": [
     "fleek",
@@ -27,6 +27,8 @@
     "moment": "^2.10.6"
   },
   "devDependencies": {
-    "koa-bodyparser": "^2.0.1"
+    "chai": "^3.3.0",
+    "koa-bodyparser": "^2.0.1",
+    "mocha": "^2.3.3"
   }
 }
