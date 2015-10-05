@@ -1,6 +1,12 @@
 # Fleek Validator
 
-Middleware router that validates request against swagger doc specifications.
+
+[![Build Status](https://travis-ci.org/fleekjs/fleek-validator.svg)](https://travis-ci.org/fleekjs/fleek-validator) [![npm](https://img.shields.io/npm/l/express.svg)](https://github.com/fleekjs/fleek-validator/blob/master/LICENSE)  [![Dependencies](https://img.shields.io/david/fleekjs/fleek-validator.svg)](https://david-dm.org/fleekjs/fleek-validator) [![Join the chat at https://gitter.im/fleekjs/fleek-validator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/fleekjs/fleek-validator?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+
+Koa middleware that validates request against [swagger documentation](http://swagger.io/).
+
+`$ npm install fleek-validator`
 
 Quick reference:
 - Best used in tandem with the [fleek-router](#koa-on-fleek)
@@ -79,18 +85,17 @@ Quick reference:
 - [**TODO** Full example]()
 
 ```javascript
-var koa            = require('koa');
-var router         = require('koa-router')();
-var fleekValidator = require('fleek-validator');
-var app = koa();
+let koa       = require('koa');
+let validator = require('./lib/validator');
+let app       = koa();
 
-fleekValidator(app);
-
-router.get('/', function *() {
-  console.log('I passed validation!')
+validator(app);
+app.use(function *() {
+  this.body = { message : 'validation passed' };
 });
 
-app.listen(3000);
+app.listen(6000);
+
 ```
 
 ### Fully Custom (paths)
@@ -968,3 +973,6 @@ Accept any boolean value
 
 - [John Hofrichter](https://github.com/johnhof)
 - [Peter A. Tariche](https://github.com/ptariche)
+- [Lan Nguyen](https://github.com/lan-nguyen91)
+
+_Built and maintained with [<img width="15px" src="http://hart.com/wp-content/themes/hart/img/hart_logo.svg">](http://hart.com/) by the [Hart](http://hart.com/) team._
