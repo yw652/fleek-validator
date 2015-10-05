@@ -82,19 +82,21 @@ Quick reference:
 ### Basic
 
 - Swagger docs will be retrieved from `./api.json`, `/swagger.json`, `/config/api.json`, or `/config/swagger.json` in that order
-- [**TODO** Full example]()
+- [Full example](/examples/basic.js)
 
 ```javascript
 let koa       = require('koa');
-let validator = require('./lib/validator');
+let validator = require('fleek-validator');
+let parser    = require('koa-bodyparser');
 let app       = koa();
 
-validator(app);
+app.use(parser());
+app.use(validator());
 app.use(function *() {
   this.body = { message : 'validation passed' };
 });
 
-app.listen(6000);
+app.listen(7000);
 
 ```
 
