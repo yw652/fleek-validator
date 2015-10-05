@@ -1,27 +1,32 @@
 {
   "name": "fleek-validator",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "A validator for the fleek framework",
+  "repository": "https://github.com/fleekjs/fleek-validator",
   "main": "lib/validator.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "mocha --harmony test"
   },
   "keywords": [
     "fleek",
+    "fleekjs",
     "validator",
     "swagger"
   ],
   "engines": {
-    "node": ">= 0.11.16"
+    "node": ">= 0.12.00"
   },
   "license": "MIT",
   "dependencies": {
     "co": "^4.5.4",
+    "fleek-parser": "^0.1.1",
     "fs": "0.0.2",
     "is_js": "^0.7.3",
     "koa-router": "^4.3.2",
     "lodash": "^3.8.0",
-    "moment": "^2.10.6",
-    "fleek-parser": "git+ssh://git@github.com:fleekjs/fleek-parser.git#v0.0.2"
+    "moment": "^2.10.6"
+  },
+  "devDependencies": {
+    "koa-bodyparser": "^2.0.1"
   }
 }
