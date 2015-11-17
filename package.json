@@ -21,9 +21,10 @@
     "co": "^4.5.4",
     "fleek-parser": "^0.1.1",
     "fs": "0.0.2",
+    "genit": "^1.0.2",
     "is_js": "^0.7.3",
     "koa-router": "^4.3.2",
-    "lodash": "^3.8.0",
+    "lodash": "^3.10.1",
     "moment": "^2.10.6"
   },
   "devDependencies": {
