@@ -33,7 +33,7 @@ Quick reference:
 - [Configuration](#configuration)
   - [`config.swagger`](#configswagger)
   - [`config.success`](#configsuccess)
-  - [`config.catch`](#configcatch)
+  - [`config.error`](#configerror)
   - [`config.strict`](#configstrict)
 - [Validations](#validation)
   - [Types](#types)
@@ -402,11 +402,10 @@ config.swagger = require('./a/function/returning/swag')();
 ```javascript
 config.succcess = function *(next) {
   console.log('woo! validation passed!');
-  yield next();
 }
 ```
 
-### config.catch
+### config.error
 
 #### [optional]
 
@@ -421,7 +420,7 @@ config.succcess = function *(next) {
 - `Function` - executed on validation failure
 
 ```javascript
-config.catch = function *(err, next) {
+config.error = function *(err, next) {
   console.log('oh no! Returning default errors');
 }
 ```
