@@ -1,25 +1,30 @@
 'use strict'
 
-let koa       = require('koa');
+let koa = require('koa');
 let validator = require('../lib/validator');
-let parser    = require('koa-bodyparser');
-let app       = koa();
+let router = require('fleek-router');
+let parser = require('koa-bodyparser');
+let app = module.exports = koa();
 
 const PORT = 7000;
 
 app.use(parser());
 
 let config = {
-  swagger : './swagger.json'
+    swagger: './swagger.json',
+    controllers : '.',
+    success: function *(next) {
+        this.set('X-fleek-validation', 'OK');
+    },
+    error: function *(err, next) {
+        this.set('X-fleek-validation', 'KO');
+        this.body = err;
+        this.status = 400;
+    }
 }
 
 validator(app, config);
-// OR
-// app.use(validator(config));
-
-app.use(function *() {
-  this.body = { message : 'validation passed' };
-});
+router(app, config)
 
 app.listen(PORT);
 console.log('Listening on port ' + PORT)
