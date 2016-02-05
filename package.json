@@ -1,6 +1,6 @@
 {
   "name": "fleek-validator",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "description": "A validator for the fleek framework",
   "repository": "https://github.com/fleekjs/fleek-validator",
   "main": "lib/validator.js",
