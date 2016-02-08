@@ -405,7 +405,7 @@ config.succcess = function *(next) {
 }
 ```
 
-### config.error
+### config.error || config.catch
 
 #### [optional]
 
