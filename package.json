@@ -5,7 +5,7 @@
   "repository": "https://github.com/fleekjs/fleek-validator",
   "main": "lib/validator.js",
   "scripts": {
-    "test": "mocha --harmony tests"
+    "test": "mocha --harmony tests && mocha --harmony examples/test"
   },
   "keywords": [
     "fleek",
@@ -19,8 +19,8 @@
   "license": "MIT",
   "dependencies": {
     "co": "^4.6.0",
-    "fleek-parser": "^1.0.0",
-    "fleek-router": "^1.0.0",
+    "fleek-parser": "git://github.com/fleekjs/fleek-parser.git",
+    "fleek-router": "^1.0.1",
     "fs": "0.0.2",
     "genit": "^1.0.2",
     "is_js": "^0.7.6",
