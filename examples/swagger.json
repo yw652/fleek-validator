@@ -36,6 +36,34 @@
           }
         }
       }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": ["users"],
+        "parameters": [
+          {
+            "name"        : "id",
+            "description" : "user id",
+            "in"          : "path",
+            "type"        : "integer",
+            "required"    : true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User returned",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/user"
+              }
+            }
+          },
+          "default": {
+            "schema": { "$ref": "#/definitions/InternalError" }
+          }
+        }
+      }
     }
   },
   "definitions": {

@@ -13,18 +13,22 @@ app.use(parser());
 let config = {
     swagger: './swagger.json',
     controllers : '.',
-    success: function *(next) {
-        this.set('X-fleek-validation', 'OK');
-    },
-    error: function *(err, next) {
-        this.set('X-fleek-validation', 'KO');
-        this.body = err;
-        this.status = 400;
-    }
+    validate: validator({
+        swagger: './swagger.json',
+        success: function *(next) {
+            this.set('X-fleek-validation', 'OK');
+        },
+        error: function *(err, next) {
+            this.set('X-fleek-validation', 'KO');
+            this.body = err;
+            this.status = 400;
+        }
+    })
 }
 
-validator(app, config);
-router(app, config)
+router(app, config);
 
-app.listen(PORT);
-console.log('Listening on port ' + PORT)
+if (!module.parent) {
+    app.listen(PORT);
+    console.log('Listening on port ' + PORT)
+}
