@@ -18,23 +18,20 @@
   },
   "license": "MIT",
   "dependencies": {
-    "co": "^4.6.0",
     "fleek-parser": "^1.1.2",
-    "fleek-router": "^1.0.1",
     "fs": "0.0.2",
     "genit": "^1.0.2",
     "is_js": "^0.7.6",
-    "koa": "^1.1.2",
-    "koa-bodyparser": "^2.0.1",
     "koa-router": "^4.3.2",
     "lodash": "^3.10.1",
-    "mocha": "^2.4.5",
-    "moment": "^2.11.2",
-    "supertest": "^1.1.0"
+    "moment": "^2.11.2"
   },
   "devDependencies": {
-    "chai": "^3.3.0",
+    "chai": "^3.5.0",
+    "fleek-router": "^1.0.1",
+    "koa": "^1.1.2",
     "koa-bodyparser": "^2.0.1",
-    "mocha": "^2.3.3"
+    "mocha": "^2.4.5",
+    "supertest": "^1.2.0"
   }
 }
