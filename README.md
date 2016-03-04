@@ -72,7 +72,7 @@ Quick reference:
     - [`toUpperCase`](#touppercase)
     - [`toLowerCase`](#tolowercase)
   - [Miscellaneous](#miscellaneous)
-    - [`defaltsValue`](#defaultvalue)
+    - [`defaultValue`](#defaultvalue)
     - [`required`](#required)
 - [Reference Material](#reference-material)
 - [Authors](#authors)
