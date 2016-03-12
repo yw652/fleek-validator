@@ -613,6 +613,18 @@ Accept any boolean value
 ```
 
 
+#### `array`
+
+Accept any array value
+
+```JSON
+"parameters": [{
+  "name" : "foo",
+  "type" : "array",
+  "in"   : "body"
+}]
+```
+
 ### Restrictions
 
 #### `multipleOf`
