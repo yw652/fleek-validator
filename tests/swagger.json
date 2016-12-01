@@ -26,7 +26,29 @@
                 "type": "string"
               },
               "birthdate": {
-                "type": "string"
+                "type": "date"
+              },
+              "ssn": {
+                "type": "integer"
+              },
+              "height": {
+                "type": "double"
+              },
+              "gender": {
+                "type": "string",
+                "enum": ["M", "F"]
+              },
+              "nicknames": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "enable_notifications": {
+                "type": "boolean"
+              },
+              "deadline": {
+                "type": "datetime"
               },
               "name": {
                 "type": "object",
