@@ -62,15 +62,42 @@ describe('Validations', () => {
           expect(validations.type(true, { type: 'boolean' })).to.equal(true);
           expect(validations.type('true', { type: 'boolean' })).to.equal(true);
           expect(validations.type('1', { type: 'boolean' })).to.equal(true);
+          expect(validations.type(1, { type: 'boolean' })).to.equal(true);
           expect(validations.type(false, { type: 'boolean' })).to.equal(false);
           expect(validations.type('false', { type: 'boolean' })).to.equal(false);
           expect(validations.type('0', { type: 'boolean' })).to.equal(false);
+          expect(validations.type(0, { type: 'boolean' })).to.equal(false);
         });
         it('should reject any non boolean', should.fail('boolean', [], 10, {}, 'test'));
     });
     describe('date', () => {
       it('should accept a date', should.pass('date', '01/01/1991', '12/12/2012'));
       it('should reject any non date', should.fail('date', [], 0, 10, true, 'test', '13/13/2013'));
+      it('should allow future restriction', () => {
+        let future = '01/01/2050';
+        let past = '01/01/1991';
+        expect(validations.type(future, { type: 'date', future: true})).to.equal(future);
+        expect(validations.type(past, { type: 'date', future: true})).instanceof(ValError);
+      });
+      it('should allow past restriction', () => {
+        let future = '01/01/2050';
+        let past = '01/01/1991';
+        expect(validations.type(past, { type: 'date', past: true})).to.equal(past);
+        expect(validations.type(future, { type: 'date', past: true})).instanceof(ValError);
+      });
+      it('should allow custom date format', () => {
+        let valid = '2050 01 01';
+        let invalid = '01/01/1991';
+        let format = 'YYYY MM DD';
+        expect(validations.type(valid, { type: 'date', format: format})).to.equal(valid);
+        expect(validations.type(invalid, { type: 'date', format: format})).instanceof(ValError);
+      });
+      it('should allow non-strict date validation', () => {
+        let valid = '01/01/1991';
+        let validish = '01-01-1991';
+        expect(validations.type(valid, { type: 'date', strict: false })).to.equal(valid);
+        expect(validations.type(validish, { type: 'date', strict: false })).to.equal(validish);
+      });
     });
   });
 });
