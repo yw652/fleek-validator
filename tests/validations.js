@@ -10,7 +10,20 @@ const ValError = require('../lib/error');
 const SWAGGER = require('./swagger.json');
 const CTX = require('./ctx');
 
+
 describe('Validations', () => {
+  describe('required', () => {
+    it('should accept any value', () => {
+      let vals = [1, 'test', {}, []];
+      for (let val of vals) {
+        expect(validations.required(val, { required: true })).to.equal(val);
+      }
+    });
+    it('should reject undefined', () => {
+      expect(validations.required(undefined, { required: true })).instanceof(ValError);
+    });
+  });
+
   describe('type', () => {
     let should = {
       pass (type, ...vals) {
