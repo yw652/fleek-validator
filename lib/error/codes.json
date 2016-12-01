@@ -1,0 +1,138 @@
+{
+  "REQUIRED" : {
+    "message" : "Required value",
+    "code"   : 1
+  },
+  "GENERIC" : {
+    "message" : "Validation failed",
+    "code"    : 2
+  },
+  "TYPE" : {
+    "STRING" : {
+      "message" : "String expected",
+      "code"    : 100
+    },
+    "BOOLEAN" : {
+      "message" : "Boolean expected",
+      "code"    : 101
+    },
+    "INTEGER" : {
+      "message" : "Integer expected",
+      "code"    : 102
+    },
+    "LONG" : {
+      "message" : "Long expected",
+      "code"    : 103
+    },
+    "FLOAT" : {
+      "message" : "Float expected",
+      "code"    : 104
+    },
+    "DOUBLE" : {
+      "message" : "Double expected",
+      "code"    : 105
+    },
+    "BYTE" : {
+      "message" : "Byte expected",
+      "code"    : 106
+    },
+    "DATE" : {
+      "message" : "Date expected with the format ${expected}",
+      "code"    : 107
+    },
+    "DATETIME" : {
+      "message" : "DateTime expected",
+      "code"    : 108
+    },
+    "ARRAY" : {
+      "message" : "Array expected",
+      "code"    : 109
+    },
+    "OBJECT" : {
+      "message" : "Object expected",
+      "code"    : 110
+    }
+  },
+  "VALUE" : {
+    "MULTIPLE_OF": {
+      "message" : "Must be a multiple of ${expected}",
+      "code"    : 200
+    },
+    "MAX": {
+      "message" : "Must be less than or equal to ${expected}",
+      "code"   : 201
+    },
+    "EXCLUSIVE_MAX": {
+      "message" : "Must be less than ${expected}",
+      "code"   : 202
+    },
+    "MIN": {
+      "message" : "Must be greater than or equal to ${expected}",
+      "code"   : 203
+    },
+    "EXCLUSIVE_MIN": {
+      "message" : "Must be greater then ${expected}",
+      "code"   : 204
+    },
+    "MAX_LENGTH": {
+      "message" : "Must be no longer than ${expected}",
+      "code"   : 205
+    },
+    "MAX_ITEMS": {
+      "message" : "Must be no longer than ${expected}",
+      "code"   : 206
+    },
+    "MIN_LENGTH": {
+      "message" : "Must be no shorter than ${expected}",
+      "code"   : 207
+    },
+    "MIN_ITEMS": {
+      "message" : "Must be no shorter than ${expected}",
+      "code"   : 208
+    },
+    "PATTERN": {
+      "message" : "Must match the pattern ${expected}",
+      "code"   : 209
+    },
+    "UNIQUE_ITEMS": {
+      "message" : "Items must be unique",
+      "code"   : 210
+    },
+    "MAX_PROPERTIES": {
+      "message" : "Must have no more than ${expected} properties",
+      "code"   : 211
+    },
+    "MIN_PROPERTIES": {
+      "message" : "Must have no less than ${expected} properties",
+      "code"   : 212
+    },
+    "ENUM": {
+      "message" : "Only the Following values are allowed: ${expected}",
+      "code"   : 203
+    },
+    "EMAIL": {
+      "message" : "Must be a valid email",
+      "code"   : 204
+    },
+    "ALPHANUMERIC": {
+      "message" : "Must be alphanumberic",
+      "code"   : 205
+    },
+    "LOWERCASE": {
+      "message" : "Must be lowercase",
+      "code"   : 206
+    },
+    "UPPERCASE": {
+      "message" : "Must be uppercase",
+      "code"   : 207
+    },
+    "PAST": {
+      "message" : "Must be a past date",
+      "code"    : 208
+    },
+    "FUTURE": {
+      "message" : "Must be a future date",
+      "code"    : 209
+    }
+  }
+}

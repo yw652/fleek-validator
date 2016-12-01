@@ -5,7 +5,7 @@ const expect = require('chai').expect;
 const moment = require('moment');
 
 const Validator = require('../lib/validator');
-const validations = require('../lib/validator');
+const validations = require('../lib/validations');
 const ValError = require('../lib/error');
 const SWAGGER = require('./swagger.json');
 const CTX = require('./ctx');
@@ -13,11 +13,15 @@ const CTX = require('./ctx');
 describe('Validations', () => {
   describe('type', () => {
     let should = {
-      pass (type, ...vals) => () => {
-        for (let val of vals) expect(validations.type(val, { type: type })).to.equal(val);
+      pass (type, ...vals) {
+        return () => {
+          for (let val of vals) expect(validations.type(val, { type: type })).to.equal(val);
+        }
       },
-      fail (type, ...vals) => () => {
-        for (let val of vals) expect(validations.type(val, { type: type })).instanceof(ValError);
+      fail (type, ...vals) {
+        return () => {
+          for (let val of vals) expect(validations.type(val, { type: type })).instanceof(ValError);
+        }
       }
     };
 
@@ -38,7 +42,7 @@ describe('Validations', () => {
       it('should reject any non integer', should.fail('integer', [], {}, true, 'test'));
     });
     describe('datetime', () => {
-      it('should accept a datetime', should.pass('datetime', moment().toISOString());
+      it('should accept a datetime', should.pass('datetime', moment().toISOString()));
       it('should reject any non datetime', should.fail('datetime', [], 0, 10, true, 'test'));
     });
     describe('long', () => {
@@ -65,8 +69,8 @@ describe('Validations', () => {
         it('should reject any non boolean', should.fail('boolean', [], 10, {}, 'test'));
     });
     describe('date', () => {
-      it('should accept a ', should.pass('date', '01/01/1991', '12/12/2012'));
-      it('should reject any non ', should.fail('date', [], 0, 10, true, 'test', '13/13/2013'));
+      it('should accept a date', should.pass('date', '01/01/1991', '12/12/2012'));
+      it('should reject any non date', should.fail('date', [], 0, 10, true, 'test', '13/13/2013'));
     });
   });
 });
