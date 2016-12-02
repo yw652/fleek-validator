@@ -64,5 +64,14 @@ describe('Validations - String', () => {
     it('should reject string', () => {
       expect(validations.uppercase('AbC', { uppercase: true })).instanceof(ValError);
     });
-  });
+  })
+
+  describe('pattern', () => {
+    it('should accept string matching regular expression', () => {
+      expect(validations.pattern('ABC1!', { pattern: '[a-bzA-Z]+.!$'  })).to.equal('ABC1!');
+    });
+    it('should reject string not matching regular expression', () => {
+      expect(validations.pattern('ABC!1', { pattern: '[a-zA-Z]+.!$' })).instanceof(ValError);
+    });
+  });;
 });
