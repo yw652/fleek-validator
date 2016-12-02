@@ -3,13 +3,10 @@
 const mocha = require('co-mocha');
 const expect = require('chai').expect;
 
-const Validator = require('../lib/validator');
-const normalizations = require('../lib/normalizations');
-const ValError = require('../lib/error');
-const SWAGGER = require('./swagger.json');
-const CTX = require('./ctx');
+const normalizations = require('../../lib/normalizations');
+const ValError = require('../../lib/error');
 
-describe('Normalizations', () => {
+describe('Normalizations - String', () => {
   describe('trim', () => {
     it('should trim whitespace', () => {
       let str = '  test  ';

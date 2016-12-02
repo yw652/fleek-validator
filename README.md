@@ -1,5 +1,7 @@
 # Fleek Validator
 
+# http://json-schema.org/latest/json-schema-validation.html#anchor42
+
 [![Build Status](https://travis-ci.org/fleekjs/fleek-validator.svg)](https://travis-ci.org/fleekjs/fleek-validator) [![npm](https://img.shields.io/npm/l/express.svg)](https://github.com/fleekjs/fleek-validator/blob/master/LICENSE)  [![Dependencies](https://img.shields.io/david/fleekjs/fleek-validator.svg)](https://david-dm.org/fleekjs/fleek-validator) [![Join the chat at https://gitter.im/fleekjs/fleek-validator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/fleekjs/fleek-validator?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
