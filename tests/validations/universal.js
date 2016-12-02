@@ -80,4 +80,17 @@ describe('Validations - Universal', () => {
       it('should reject any non boolean', should.fail('boolean', [], 10, {}, 'test'));
     });
   });
+
+  describe('enum', () => {
+    it('should accept an enumerated value of any kind', () => {
+      let vals = [1, 'test', null];
+      for (let val of vals) {
+        expect(validations.enum(val, { enum: [1, 'test', null, 10, 'hello'] })).to.equal(val);
+      }
+    });
+    it('should reject any value not enumerated', () => {
+      expect(validations.enum(11, [1, 'test', null, 10, 'hello'])).instanceof(ValError);
+      expect(validations.enum(true, [1, 'test', null, 10, 'hello'])).instanceof(ValError);
+    });
+  });
 });
