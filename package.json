@@ -5,7 +5,7 @@
   "repository": "https://github.com/fleekjs/fleek-validator",
   "main": "lib/validator.js",
   "scripts": {
-    "test": "mocha --harmony tests && mocha --harmony examples/test"
+    "test": "snyk test && mocha --harmony tests && mocha --harmony examples/test"
   },
   "keywords": [
     "fleek",
@@ -27,10 +27,11 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "fleek-router": "^1.0.1",
+    "fleek-router": "^1.2.5",
     "koa": "^1.1.2",
     "koa-bodyparser": "^2.0.1",
     "mocha": "^2.4.5",
-    "supertest": "^1.2.0"
+    "supertest": "^1.2.0",
+    "snyk": "^1.21.2"
   }
 }
