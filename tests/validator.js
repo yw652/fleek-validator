@@ -42,17 +42,66 @@ describe('Validator', () => {
   //     let validator = new Validator();
   //   });
   // });
-  // describe('object', () => {
-  //   it('should ignore requests with no fleek context', () => {
-  //     let validator = new Validator();
-  //   });
-  //   it('should return success for requests passing validation', () => {
-  //     let validator = new Validator();
-  //   });
-  //   it('should return error for requests failing validation', () => {
-  //     let validator = new Validator();
-  //   });
-  // });
+
+  describe('object', () => {
+    let validator = new Validator();
+    it('should return success for objects passing validation', () => {
+      let val = {
+        email: 'john.tester@blackhole.com',
+        primary_phone: '1231231231',
+        birthdate: '01/01/1991',
+        ssn: 213121234,
+        height: 1.8,
+        gender: 'M',
+        nicknames: ['jack'],
+        enable_notifications: true,
+        deadline: '2025-12-05T22:57:56+00:00',
+        name: {
+          first: 'john',
+          last: 'tester'
+        }
+      };
+      let result = validator.object(val, SWAGGER.definitions.user);
+      val.secondary_phone = undefined; // hackiness from undefined default
+      expect(result).to.deep.equal(val);
+    });
+    it('should return errors for objects failing validation', () => {
+      let val = {};
+      let result = validator.object(val, SWAGGER.definitions.user);
+      expect(result).instanceof(Error);
+      expect(result.errors).to.have.length.above(0);
+      for (let err of result.errors) expect(err).instanceof(ValErr);
+    });
+    it('should return updated object if normalizations are used', () => {
+      let val = {
+        email: 'john.TESTER@blackhole.com',
+        primary_phone: '1231231231',
+        birthdate: '01/01/1991',
+        ssn: 213121234,
+        height: 1.8,
+        gender: 'M',
+        nicknames: ['jack'],
+        deadline: '2025-12-05T22:57:56+00:00',
+        name: {
+          first: 'JOHN',
+          last: 'tester'
+        }
+      };
+      let result = validator.object(val, SWAGGER.definitions.user);
+      expect(result.email).to.not.equal(val.email);
+      expect(result.email).to.equal(val.email.toLowerCase());
+      expect(result.name.first).to.not.equal(val.name.first);
+      expect(result.name.first).to.equal(val.name.first.toLowerCase());
+      delete result.enable_notifications;
+      delete result.email;
+      delete val.email;
+      delete result.name.first;
+      delete val.name.first;
+      val.secondary_phone = undefined; // hackiness from undefined default
+      expect(result).to.deep.equal(val);
+    });
+  });
+
   describe('one', () => {
     let param = () => { return { required: true, email: true, type: 'string' }; };
     let validator = new Validator();

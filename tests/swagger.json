@@ -115,5 +115,64 @@
         "tags": ["bar"]
       }
     }
+  },
+  "definitions": {
+    "user": {
+      "required": ["email", "primary_phone", "birthdate", "name"],
+      "properties": {
+        "email": {
+          "type": "string",
+          "toLowerCase": true
+        },
+        "primary_phone": {
+          "type": "string"
+        },
+        "secondary_phone": {
+          "type": "string"
+        },
+        "birthdate": {
+          "type": "date"
+        },
+        "ssn": {
+          "type": "integer"
+        },
+        "height": {
+          "type": "double"
+        },
+        "gender": {
+          "type": "string",
+          "enum": ["M", "F"]
+        },
+        "nicknames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "enable_notifications": {
+          "type": "boolean",
+          "default": true
+        },
+        "deadline": {
+          "type": "datetime"
+        },
+        "name": {
+          "type": "object",
+          "required": ["first", "last"],
+          "properties": {
+            "first": {
+              "type": "string",
+              "required": true,
+              "toLowerCase": true
+            },
+            "last": {
+              "type": "string",
+              "required": true,
+              "toLowerCase": true
+            }
+          }
+        }
+      }
+    }
   }
 }
