@@ -19,29 +19,40 @@ describe('Validator', () => {
     //   expect(() => new Validator({})).to.throw(Error);
     // });
   });
-  // describe('ctx', () => {
-  //   it('should ignore requests with no fleek context', () => {
-  //     let validator = new Validator();
-  //     console.log(validator.ctx({}));
-  //   });
-  //   it('should return succeed for requests passing validation', () => {
-  //     let validator = new Validator();
-  //     let ctx = CTX.post('/user/create')
-  //                   .context(SWAGGER.paths['/user/create'].post)
-  //                   .body({
-  //                     email: 'test@testing.com',
-  //                     primary_phone: '1112223333',
-  //                     birthdate: '01/01/1991',
-  //                     name: {
-  //                       first: 'john',
-  //                       last: 'hof'
-  //                     }
-  //                   });
-  //   });
-  //   it('should return error for requests failing validation', () => {
-  //     let validator = new Validator();
-  //   });
-  // });
+  describe('ctx', () => {
+    let validator = new Validator();
+    it('should ignore requests with no fleek context', () => {
+      let result = validator.ctx({}, null, true);
+      expect(result.fleek.validation).to.be.false;
+    });
+    it('should return succeed for requests passing validation', () => {
+      let ctx = CTX.post('/user/create')
+                    .context(SWAGGER.paths['/user/create'].post)
+                    .body({
+                      email: 'john.tester@blackhole.com',
+                      primary_phone: '1231231231',
+                      birthdate: '01/01/1991',
+                      ssn: 213121234,
+                      height: 1.8,
+                      gender: 'M',
+                      nicknames: ['jack'],
+                      enable_notifications: true,
+                      deadline: '2025-12-05T22:57:56+00:00',
+                      name: {
+                        first: 'john',
+                        last: 'tester'
+                      }
+                    });
+      let result = validator.ctx(ctx, null, true);
+      expect(result.body).to.deep.equal(ctx.body);
+      expect(result.fleek.validation).to.be.an('object');
+      expect(result.fleek.validation.passed).to.be.true;
+      expect(result.fleek.validation.failed).to.be.false;
+      expect(result.fleek.validation.errors).to.have.length(0);
+    });
+    it('should return error for requests failing validation', () => {
+    });
+  });
 
   describe('object', () => {
     let validator = new Validator();
