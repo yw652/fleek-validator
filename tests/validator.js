@@ -51,6 +51,28 @@ describe('Validator', () => {
       expect(result.fleek.validation.errors).to.have.length(0);
     });
     it('should return error for requests failing validation', () => {
+      let ctx = CTX.post('/user/create')
+                    .context(SWAGGER.paths['/user/create'].post)
+                    .body({
+                      email: 'john.tester@blackhole.com', // Errors:
+                    //primary_phone: '1231231231',        // 0
+                      birthdate: '13/13/2013',            // 1
+                      height: '1.8',                      // 2
+                      gender: 'T',                        // 3
+                      nicknames: 'jack',                  // 4
+                      enable_notifications: 'nope',       // 5
+                      deadline: '2025-12',                // 6
+                      name: {
+                        first: 1,                         // 7
+                        last: true                        // 8
+                      }
+                    });
+      let result = validator.ctx(ctx, null, true);
+      expect(result.body).to.deep.equal(ctx.body);
+      expect(result.fleek.validation).to.be.an('object');
+      expect(result.fleek.validation.passed).to.be.false;
+      expect(result.fleek.validation.failed).to.be.true;
+      expect(result.fleek.validation.errors).to.have.length(8);
     });
   });
 
