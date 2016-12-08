@@ -10,14 +10,10 @@ const CTX = require('./ctx');
 
 describe('Validator', () => {
   describe('Constructor', () => {
-    it('should initialize with a swagger object', () => {
+    it('should initialize', () => {
       let validator = new Validator();
       expect(validator).instanceof(Validator);
     });
-    // it('should error if swagger is not provided, or malphormed', () => {
-    //   expect(() => new Validator()).to.throw(Error);
-    //   expect(() => new Validator({})).to.throw(Error);
-    // });
   });
   describe('ctx', () => {
     let validator = new Validator();
