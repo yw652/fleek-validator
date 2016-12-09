@@ -47,7 +47,10 @@ describe('Validations - Universal', () => {
       it('should reject any non object', should.fail('object', [], 0, 10, true, 'test'));
     });
     describe('integer', () => {
-      it('should accept an integer', should.pass('integer', 0, 5, 10, 10000));
+      it('should accept an integer', () => {
+        should.pass('integer', 0, 5, 10, 10000)();
+        expect(validations.type('100', { type: 'integer' })).to.equal(100);
+      });
       it('should reject any non integer', should.fail('integer', [], {}, true, 'test'));
     });
     describe('datetime', () => {
@@ -55,16 +58,25 @@ describe('Validations - Universal', () => {
       it('should reject any non datetime', should.fail('datetime', [], 0, 10, true, 'test'));
     });
     describe('long', () => {
-      it('should accept a long', should.pass('long', 10.0, 0.0, 0, 1));
+      it('should accept a long', () => {
+        should.pass('long', 10.0, 0.0, 0, 1)();
+        expect(validations.type('100', { type: 'long' })).to.equal(100);
+      });
       it('should reject any non long', should.fail('long', [], true, 'test'));
     });
     describe('float', () => {
-      it('should accept a float', should.pass('long', 10.0, 0.0, 0, 1));
+      it('should accept a float', () => {
+        should.pass('long', 10.0, 0.0, 0, 1)();
+        expect(validations.type('100', { type: 'float' })).to.equal(100);
+      });
       it('should reject any non float', should.fail('long', [], true, 'test'));
     });
     describe('double', () => {
-      it('should accept a double', should.pass('long', 10.0, 0.0, 0, 1));
-      it('should reject any non double', should.fail('long', [], true, 'test'));
+      it('should accept a double', () => {
+        should.pass('long', 10.0, 0.0, 0, 1)();
+        expect(validations.type('100', { type: 'long' })).to.equal(100);
+      });
+      it('should reject any non double', should.fail('double', [], true, 'test'));
     });
     describe('boolean', () => {
       it('should accept a boolean', () => {
