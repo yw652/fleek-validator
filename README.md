@@ -1,5 +1,7 @@
 # Fleek Validator
 
+[![Build Status](https://travis-ci.org/fleekjs/fleek-validator.svg?branch=master)](https://travis-ci.org/fleekjs/fleek-validator)
+
 Middleware and utilities for validating data against [swagger](http://swagger.io/specification/) schema's.
 
 Requirements:
