@@ -1,7 +1,5 @@
 # Fleek Validator
 
-# http://json-schema.org/latest/json-schema-validation.html#anchor42
-
 Middleware and utilities for validating data against [swagger](http://swagger.io/specification/) schema's.
 
 Requirements:
@@ -193,12 +191,107 @@ console.log(result); // => {
 
 # Normalizations
 
+#### `default`
+  - Expect: [Boolean]
+  - Type: [Mixed]
+  - Action: if the value is not defined, set it to the default
+  - Note: First action taken in order of operations
+#### `trim`
+  - Expect: [Boolean]
+  - Type: [String]
+  - Action: trim whitespace
+#### `toUpperCase`
+  - Expect: [Boolean]
+  - Type: [String]
+  - Action: convert to uppercase
+#### `toLowerCase`
+  - Expect: [Boolean]
+  - Type: [String]
+  - Action: convert to uppercase
+
 # Validations
 
-
-
-
-
+#### `required`
+  - Expect: [Boolean]
+  - Type: [String]
+  - Action: reject undefined
+  - Note: Second action taken in order of operations, after default
+#### `type`
+  - Expect: [String]
+  - Type: [Mixed]
+  - Action: reject the value if it does not match the expected type
+#### `maxItems`
+  - Expect: [Integer]
+  - Type: [Array]
+  - Action: rejects an array with more than the expected max
+#### `minItems`
+  - Expect: [Integer]
+  - Type: [Array]
+  - Action: rejects an array with fewer than the expected min
+#### `uniqueItems`
+  - Expect: [Boolean]
+  - Type: [Array]
+  - Action: reject an array with duplicate items
+#### `multipleOf`
+  - Expect: [Integer]
+  - Type: [Number]
+  - Action: reject a number thats not a multiple of the expected integer
+#### `maximum`
+  - Expect: [Integer]
+  - Type: [Number]
+  - Action: reject a number thats above the expected max
+#### `exclusiveMaximum`
+  - Expect: [Integer]
+  - Type: [Number]
+  - Action: reject a number thats above or equal to the expected max
+#### `minimum`
+  - Expect: [Integer]
+  - Type: [Number]
+  - Action: reject a number thats below the expected min
+#### `exclusiveMinimum`
+  - Expect: [Integer]
+  - Type: [Number]
+  - Action: reject a number thats below or equal to the expected min
+#### `maxProperties`
+  - Expect: [Integer]
+  - Type: [Object]
+  - Action: reject an object with more than the expected max number of properties
+#### `minProperties`
+  - Expect: [Integer]
+  - Type: [Object]
+  - Action: reject an object with fewer than the expected min number of properties
+#### `email`
+  - Expect: [Boolean]
+  - Type: [String]
+  - Action: reject a string that is not a valid email
+#### `alphanumeric`
+  - Expect: [Boolean]
+  - Type: [String]
+  - Action: reject a non-alphanumeric string
+#### `lowercase`
+  - Expect: [Boolean]
+  - Type: [String]
+  - Action: reject a string containing uppercase characters
+#### `uppercase`
+  - Expect: [Boolean]
+  - Type: [String]
+  - Action: reject a string containing lowercase characters
+#### `minLength`
+  - Expect: [Integer]
+  - Type: [String]
+  - Action: reject a string of length below the expected length
+#### `maxLength`
+  - Expect: [Integer]
+  - Type: [String]
+  - Action: reject a string of length above the expected length
+#### `pattern`
+  - Expect: [RegExp String]
+  - Type: [String]
+  - Action: reject a string that doesnt pass the rejex
+#### `enum`
+  - Expect: [Array]
+  - Type: [Mixed]
+  - Action: reject any value not listed in the enumeration
 
 ## Authors
 
